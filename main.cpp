@@ -10,6 +10,7 @@
  *			 Amy Brown												  *
  *			 Seth Putman											  *
  *			 Brianna Hillman										  *
+ *			 Todd Gibson											  *
  **********************************************************************/
 
 #include <iostream>
@@ -25,20 +26,36 @@ int main(int argc, char const *argv[]) {
 	return 0;
 }
 
+/********************************************
+ * @function: 	printTable					*
+ * @params:		2D Vector of ints - "table"	*
+ * @purpose: 	Prints the table in the		*
+ *				following form:				*
+ *				    + | a b c 				*
+ *				    ----------				*
+ *				    d | 1 2 3				*
+ *				    e | 4 5 6				*
+ *				    f | 7 8 9				*
+ ********************************************/
 void printTable(vector< vector<int> > table) {
 	char label = 'a';
 	cout<<"+ | ";
-	for(vector< vector<int> >::size_type i = 0; i < table.size(); ++i) {
-		for(vector<int>::size_type j = 0; j < table[i].size(); ++j) {
+	int cols = table[0].size();
+	for(int i = 0; i <= table.size(); ++i) {
+		for(int j = 0; j < cols; ++j) {
 			if(i == 0){
-				cout<<label<<" ";
-				label++;
+				cout<<label++<<" ";
 			} else {
 				cout<<table[i-1][j]<<" ";
 			}
 		}
-		if(i == 0)
-			cout<<endl<<"-------------------------------------";
-		cout<<endl<<label++<<" | ";
+		if(i == 0) {
+			cout<<endl;
+			for(int k = 0; k <= cols+5; ++k)
+				cout<<"-";
+		}
+
+		if(i != table.size())
+			cout<<endl<<label++<<" | ";
 	}
 }
